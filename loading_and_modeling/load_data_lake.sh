@@ -1,3 +1,6 @@
+# Files where already on /root/data from scp command from download file. 
+# I already changed the name of the files on the PC before pushing them to AWS instance.
+# I was in the directory of the /root/data/ directory where the csv files lived when performing commands
 hdfs dfs -mkdir /user/w205/hospital_compare/
 
 tail -n +2 effective_care.csv > effective_care_noH.csv
