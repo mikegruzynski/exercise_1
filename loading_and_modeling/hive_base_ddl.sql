@@ -30,7 +30,7 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare/';
+LOCATION '/user/w205/hospital_compare/effective_care/';
 
 /* Creation of schema for hospitals.csv
 No strange formats, mostly sting data in columns
@@ -58,7 +58,7 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare/';
+LOCATION '/user/w205/hospital_compare/hospitals/';
 
 
 /* Creation of schema for measures.csv
@@ -82,7 +82,7 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare/';
+LOCATION '/user/w205/hospital_compare/measures/';
 
 /* Creation of schema for readmission.csv
 Measure_Start_Date and Measure_End_Date are considered strings because data is in Month/Day/Year format instead of SQL DATE: year, month, and day values
@@ -120,7 +120,7 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare/';
+LOCATION '/user/w205/hospital_compare/readmissions/';
 
 /* Creation of schema for survey_responses.csv
 Anything with Point or Dimension_Score in the column name will be stored as a STRING because sample data is "1 out of 10"
@@ -173,4 +173,4 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare/';
+LOCATION '/user/w205/hospital_compare/surveys_responses/';
