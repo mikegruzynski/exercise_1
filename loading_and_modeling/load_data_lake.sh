@@ -1,3 +1,5 @@
+hdfs dfs -mkdir /user/w205/hospital_compare/
+
 tail -n +2 effective_care.csv > effective_care_noH.csv
 tail -n +2 hospitals.csv > hospitals_noH.csv
 tail -n +2 measures.csv > measures_noH.csv
