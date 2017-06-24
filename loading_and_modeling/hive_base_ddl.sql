@@ -86,7 +86,7 @@ LOCATION '/user/w205/hospital_compare/';
 
 /* Creation of schema for readmission.csv
 Measure_Start_Date and Measure_End_Date are considered strings because data is in Month/Day/Year format instead of SQL DATE: year, month, and day values
-Score, Lower_Estimate, and Higher_Estimate are handled as strings because there are some missing data that wont be handled if instantiated as float or int.
+Denominator, Score, Lower_Estimate, and Higher_Estimate are handled as strings because there are some missing data that wont be handled if instantiated as float or int.
 This will be handled later in pyspark code.
  */
 
@@ -105,7 +105,7 @@ Phone_Number INT,
 Measure_Name STRING,
 Measure_ID STRING,
 Compared_to_National STRING,
-Denominator INT,
+Denominator STRING,
 Score STRING,
 Lower_Estimate STRING,
 Higher_Estimate STRING,
