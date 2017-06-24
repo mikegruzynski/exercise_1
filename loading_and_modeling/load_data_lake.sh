@@ -2,7 +2,7 @@
 # I already changed the name of the files on the PC before pushing them to AWS instance.
 # I was in the directory of the /root/data/ directory where the csv files lived when performing commands
 hdfs dfs -mkdir /user/w205/hospital_compare/effective_care
-hdfs dfs -mkdir /user/w205/hospital_compare/hositals
+hdfs dfs -mkdir /user/w205/hospital_compare/hospitals
 hdfs dfs -mkdir /user/w205/hospital_compare/measures
 hdfs dfs -mkdir /user/w205/hospital_compare/readmissions
 hdfs dfs -mkdir /user/w205/hospital_compare/surveys_responses
