@@ -1,4 +1,4 @@
--- Writing a table for the effective_care.csv data
+-- Writing a table for the effective_care.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_effective_care;
 CREATE EXTERNAL TABLE df_effective_care
 (
@@ -29,7 +29,7 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/effective_care/';
 
 
--- Writing a table for the hospitals.csv data
+-- Writing a table for the hospitals.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_hospitals;
 CREATE EXTERNAL TABLE df_hospitals
 (
@@ -55,7 +55,7 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/hospitals/';
 
 
--- Writing a table for the measures.csv data
+-- Writing a table for the measures.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_measure;
 CREATE EXTERNAL TABLE df_measure
 (
@@ -76,7 +76,7 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/measures/';
 
 
--- Writing a table for the readmissions.csv data
+-- Writing a table for the readmissions.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_readmissions;
 CREATE EXTERNAL TABLE df_readmissions
 (
@@ -109,7 +109,7 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/readmissions/';
 
 
--- Writing a table for the surveys_responses.csv data
+-- Writing a table for the surveys_responses.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_survey_responses;
 CREATE EXTERNAL TABLE df_survey_responses
 (
