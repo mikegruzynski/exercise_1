@@ -1,8 +1,4 @@
-/* Creation of schema for effective_care.csv
-Measure_Start_Date and Measure_End_Date are considered strings because data is in Month/Day/Year format instead of SQL DATE: year, month, and day values
-Score and Sample are strings because there are some missing data and special code in values that wont be handled if instantiated as float or int
- */
-
+-- Writing a table for the effective_care.csv data
 DROP TABLE df_effective_care;
 CREATE EXTERNAL TABLE df_effective_care
 (
@@ -32,10 +28,8 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/effective_care/';
 
-/* Creation of schema for hospitals.csv
-No strange formats, mostly sting data in columns
-*/
 
+-- Writing a table for the hospitals.csv data
 DROP TABLE df_hospitals;
 CREATE EXTERNAL TABLE df_hospitals
 (
@@ -61,10 +55,7 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/hospitals/';
 
 
-/* Creation of schema for measures.csv
-No strange formats, mostly sting data in columns
-*/
-
+-- Writing a table for the measures.csv data
 DROP TABLE df_measure;
 CREATE EXTERNAL TABLE df_measure
 (
@@ -84,13 +75,8 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/measures/';
 
-/* Creation of schema for readmission.csv
-Measure_Start_Date and Measure_End_Date are considered strings because data is in Month/Day/Year format instead of SQL DATE: year, month, and day values
-Denominator, Score, Lower_Estimate, and Higher_Estimate are handled as strings because there are some missing data that wont be handled if instantiated as float or int.
-This will be handled later in pyspark code.
- */
 
-
+-- Writing a table for the readmissions.csv data
 DROP TABLE df_readmissions;
 CREATE EXTERNAL TABLE df_readmissions
 (
@@ -122,13 +108,8 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/readmissions/';
 
-/* Creation of schema for survey_responses.csv
-Anything with Point or Dimension_Score in the column name will be stored as a STRING because sample data is "1 out of 10"
-HCAHPS_Base_Score and HCAHPS_Consistency_Score are handled as strings because there are some missing data that wont be handled if instantiated as float or int.
-This all will be handled later in pyspark code.
- */
 
-
+-- Writing a table for the surveys_responses.csv data
 DROP TABLE df_survey_responses;
 CREATE EXTERNAL TABLE df_survey_responses
 (
@@ -139,32 +120,32 @@ City STRING,
 State STRING,
 ZIP_Code INT,
 County_Name STRING,
-Communication_with_Nurses_Achievement_Points STRING,
-Communication_with_Nurses_Improvement_Points STRING,
-Communication_with_Nurses_Dimension_Score STRING,
-Communication_with_Doctors_Achievement_Points STRING,
-Communication_with_Doctors_Improvement_Points STRING,
-Communication_with_Doctors_Dimension_Score STRING,
-Responsiveness_of_Hospital_Staff_Achievement_Points STRING,
-Responsiveness_of_Hospital_Staff_Improvement_Points STRING,
-Responsiveness_of_Hospital_Staff_Dimension_Score STRING,
-Pain_Management_Achievement_Points STRING,
-Pain_Management_Improvement_Points STRING,
-Pain_Management_Dimension_Score STRING,
-Communication_about_Medicines_Achievement_Points STRING,
-Communication_about_Medicines_Improvement_Points STRING,
-Communication_about_Medicines_Dimension_Score STRING,
-Cleanliness_and_Quietness_of_Hospital_Environment_Achievement_Points STRING,
-Cleanliness_and_Quietness_of_Hospital_Environment_Improvement_Points STRING,
-Cleanliness_and_Quietness_of_Hospital_Environment_Dimension_Score STRING,
-Discharge_Information_Achievement_Points STRING,
-Discharge_Information_Improvement_Points STRING,
-Discharge_Information_Dimension_Score STRING,
-Overall_Rating_of_Hospital_Achievement_Points STRING,
-Overall_Rating_of_Hospital_Improvement_Points STRING,
-Overall_Rating_of_Hospital_Dimension_Score STRING,
-HCAHPS_Base_Score STRING,
-HCAHPS_Consistency_Score STRING
+Nurses_ach INT,
+Nurses_imp INT,
+Nurses_dim INT,
+Doctors_ach INT,
+Doctors_imp INT,
+Doctors_dim INT,
+Responsiveness_Staff_ach INT,
+Responsiveness_Staff_imp INT,
+Responsiveness_Staff_dim INT,
+Pain_Management_ach INT,
+Pain_Management_imp INT,
+Pain_Management_dim INT,
+Medicines_ach INT,
+Medicines_imp INT,
+Medicines_dim INT,
+Cleanliness_Quietness_ach INT,
+Cleanliness_Quietness_imp INT,
+Cleanliness_Quietness_dim INT,
+Discharge_ach INT,
+Discharge_imp INT,
+Discharge_dim INT,
+Overall_ach INT,
+Overall_imp INT,
+Overall_dim INT,
+HCAHPS_Base INT,
+HCAHPS_Consistency INT
 )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (
