@@ -1,4 +1,4 @@
--- Filtered out df_effective_care to create filtered_df_effective_care
+-- Filtered out df_effective_care to create filtered_df_effective_care. Only need these variables to potentially solve the questions associated with this execise.
 DROP TABLE filtered_df_effective_care;
 CREATE TABLE filtered_df_effective_care AS
 SELECT 
@@ -11,7 +11,7 @@ measure_id
 FROM df_effective_care;
 
 
--- Filtered out df_hospitals to create filtered_df_hospitals
+-- Filtered out df_hospitals to create filtered_df_hospitals Only need these variables to potentially solve the questions associated with this execise.
 DROP TABLE filtered_df_hospitals;
 CREATE TABLE filtered_df_hospitals AS
 SELECT
@@ -20,7 +20,7 @@ hospital_name,
 state
 FROM df_hospitals;
 
--- DID NOT NEED to filter df_measure, no valuable information pertaining to the exercise
+-- DID NOT NEED to filter df_measure, no valuable information pertaining to the exercise Only need these variables to potentially solve the questions associated with this execise.
 
 -- Filtered out df_readmissions to create filtered_df_readmissions;
 DROP TABLE filtered_df_readmissions;
@@ -38,6 +38,7 @@ FROM df_readmissions;
 -- Filtered out df_survey_responses to create filtered_df_survey_responses
 -- Made the survey values a percentage: Ex instead of 2 out of 10, now the value is 0.2
 -- This will make for an easier to figure out exercise questions associated.
+-- Only need these variables to potentially solve the questions associated with this execise.
 DROP TABLE filtered_df_survey_responses;
 CREATE TABLE filtered_df_survey_responses AS
 SELECT 
