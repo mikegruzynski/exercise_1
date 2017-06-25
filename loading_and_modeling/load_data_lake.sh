@@ -15,7 +15,7 @@ tail -n +2 readmissions.csv > readmissions_noH.csv
 tail -n +2 surveys_responses.csv > surveys_responses_noH.csv
 
 hdfs dfs -put ./effective_care_noH.csv /user/w205/hospital_compare/effective_care
-hdfs dfs -put ./hospitals_noH.csv /user/w205/hospital_compare/hositals
+hdfs dfs -put ./hospitals_noH.csv /user/w205/hospital_compare/hospitals
 hdfs dfs -put ./measures_noH.csv /user/w205/hospital_compare/measures
 hdfs dfs -put ./readmissions_noH.csv /user/w205/hospital_compare/readmissions
 hdfs dfs -put ./surveys_responses_noH.csv /user/w205/hospital_compare/surveys_responses
