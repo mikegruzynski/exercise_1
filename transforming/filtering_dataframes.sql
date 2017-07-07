@@ -7,8 +7,15 @@ hospital_name,
 state,
 condition,
 score,
+sample,
 measure_id
-FROM df_effective_care;
+FROM df_effective_care
+WHERE score not like '%Not Available%'
+AND score not like '%High%'
+AND score not like '%Medium%' 
+AND score not like '%Low%'
+and sample not like '%Not Available%'
+AND sample > 30;
 
 
 -- Filtered out df_hospitals to create filtered_df_hospitals Only need these variables to potentially solve the questions associated with this execise.
@@ -31,12 +38,16 @@ hospital_name,
 state,
 measure_id,
 measure_name,
+denominator,
 score
-FROM df_readmissions;
+FROM df_readmissions
+WHERE denominator not like '%Not Available%'
+AND score not like '%Not Available%'
+AND denominator > 30;
 
 
 -- Filtered out df_survey_responses to create filtered_df_survey_responses
--- Made the survey values a percentage: Ex instead of 2 out of 10, now the value is 0.2
+-- Made the survey values a denominatorpercentage: Ex instead of 2 out of 10, now the value is 0.2
 -- This will make for an easier to figure out exercise questions associated.
 -- Only need these variables to potentially solve the questions associated with this execise.
 DROP TABLE filtered_df_survey_responses;
@@ -69,6 +80,6 @@ SUBSTRING(Discharge_dim, 1, 2)/SUBSTR(Discharge_dim, -2) AS disch_dim_score,
 SUBSTRING(Overall_ach, 1, 2)/SUBSTR(Overall_ach, -2) AS overall_ach_pts,
 SUBSTRING(Overall_imp, 1, 2)/SUBSTR(Overall_imp, -2) AS overall_imp_pts,
 SUBSTRING(Overall_dim, 1, 2)/SUBSTR(Overall_dim, -2) AS overall_dim_score,
-HCAHPS_Base,
-HCAHPS_Consistency
+HCAHPS_Base/80 as HCAHPS_Base_score,
+HCAHPS_Consistency/20 as HCAHPS_Consistency_score
 FROM df_survey_responses;
