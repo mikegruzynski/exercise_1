@@ -1,3 +1,4 @@
+--
 DROP TABLE bh_eff_ed_avg;
 CREATE TABLE bh_eff_ed_avg AS
 SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_ed_avg FROM filtered_df_effective_care 
