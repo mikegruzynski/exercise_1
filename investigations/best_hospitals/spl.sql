@@ -150,3 +150,34 @@ left join bh_eff_sc_rank i
 on (a.provider_id = i.provider_id)
 left join bh_eff_bcptca_rank j
 on (a.provider_id = j.provider_id);
+--
+--
+--
+drop table best_hospital_ranks_filtered;
+create table best_hospital_ranks_filtered as
+select * FROM best_hospital_ranks
+WHERE bh_eff_ed_avg is NOT NULL
+and bh_eff_avg_ed_rank is NOT NULL
+and bh_eff_hacp_avg is NOT NULL
+and bh_eff_avg_hacp_rank is NOT NULL
+and bh_eff_hf_avg is NOT NULL
+and bh_eff_avg_hf_rank is NOT NULL
+and bh_eff_pc_avg is NOT NULL
+and bh_eff_avg_pc_rank is NOT NULL
+and bh_eff_scip_avg is NOT NULL
+and bh_eff_avg_scip_rank is NOT NULL
+and bh_eff_pdc_avg is NOT NULL
+and bh_eff_avg_pdc_rank is NOT NULL
+and bh_eff_p_avg is NOT NULL
+and bh_eff_avg_p_rank is NOT NULL
+and bh_eff_sc_avg is NOT NULL
+and bh_eff_avg_sc_rank is NOT NULL
+and bh_eff_bcptca_avg is NOT NULL
+and bh_eff_avg_bcptca_rank is NOT NULL;
+--
+--
+--
+SELECT hospital_name, round((bh_eff_avg_ed_rank + bh_eff_avg_hacp_rank + bh_eff_avg_hf_rank + bh_eff_avg_pc_rank + bh_eff_avg_scip_rank + bh_eff_avg_pdc_rank + bh_eff_avg_p_rank + bh_eff_avg_sc_rank + bh_eff_avg_bcptca_rank)/9, 2) as avg_rank
+FROM best_hospital_ranks_filtered  
+ORDER BY avg_rank
+LIMIT 10;
