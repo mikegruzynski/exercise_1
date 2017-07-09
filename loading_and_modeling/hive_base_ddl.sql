@@ -1,3 +1,8 @@
+-- NOTE, NEED TO HAVE DATA STORED IN:
+-- 1. /user/w205/hospital_compare/effective_care/ ; with csv file with Procedure Data
+-- 2. /user/w205/hospital_compare/hospitals/ ; with csv file with General hospital Data
+-- 3. /user/w205/hospital_compare/measures/ ; with csv file with Mapping measures to codes Data
+-- 4. /user/w205/hospital_compare/readmissions/ ; with csv file with Procedure Data
 -- Writing a table for the effective_care.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_effective_care;
 CREATE EXTERNAL TABLE df_effective_care
@@ -27,8 +32,6 @@ WITH SERDEPROPERTIES (
 )
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/effective_care/';
-
-
 -- Writing a table for the hospitals.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_hospitals;
 CREATE EXTERNAL TABLE df_hospitals
@@ -53,8 +56,6 @@ WITH SERDEPROPERTIES (
 )
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/hospitals/';
-
-
 -- Writing a table for the measures.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_measure;
 CREATE EXTERNAL TABLE df_measure
@@ -74,8 +75,6 @@ WITH SERDEPROPERTIES (
 )
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/measures/';
-
-
 -- Writing a table for the readmissions.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_readmissions;
 CREATE EXTERNAL TABLE df_readmissions
@@ -107,8 +106,6 @@ WITH SERDEPROPERTIES (
 )
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/readmissions/';
-
-
 -- Writing a table for the surveys_responses.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_survey_responses;
 CREATE EXTERNAL TABLE df_survey_responses
