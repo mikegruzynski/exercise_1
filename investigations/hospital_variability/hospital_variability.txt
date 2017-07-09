@@ -1,0 +1,17 @@
+Question3: What Procedure have the greatest variability between hospitals?
+1. Assumptions going into the investigation - Same as question 1, but will re-iterate the assumptions. I used the same assumption
+   because I wanted to stay withing the enviornment of overall best hospital since the question had "between hospitals in it":
+    - Hospitals need to have data in all 9 categories of the efective table:
+      - Emergency Department, Heart Attack or Chest Pain, Heart Failure, Preventive Care, Surgical Care Improvement Project,
+        Pregnancy and Delivery Care, Pneumonia, Stroke Care, Blood Clot Prevention
+      - This is because we are looking at overall best quality care, I want to filter out hospitals that are specialized and
+        only have certain items of the 9 categories. Taking the average on those, might be skewed. Ex. If they only had two or
+        three items from the nine, the average might be artificial since they are specialized in those categories only.
+    - Only Data will be used from the effective_care.csv dataframes
+      - I did this in order to filter out snowball biasness from recurring patients. The patients might have not taken care of 
+        themselves in between the two instances of the hospital visits. Therefore only initial visits will be considered for
+        the data analysis
+        
+        
+3. Results
+1966.83 563.88  39.63   179.82  6.28    40.32   35.57   13.51   200.79
