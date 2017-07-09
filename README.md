@@ -1,4 +1,6 @@
 # exercise_1
+Mike Gruzynski
+
 exercise 1 for w205
 
 Notes - Transforming code takes a long time to run, I aplogize but these are my first sql codes ever.
