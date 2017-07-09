@@ -1,0 +1,38 @@
+Question4: Are Average Scores for hospital quality or variance correlated with patient survey responses?
+1. Assumptions
+   - Eliminate all null values from any column of 9 responses from effective_care.csv tables or the surveys_responses.csv tables
+      - I removed the row. I wanted a clean data frame that in corporated an overall all procedure hospital to limit skew 
+
+2. Process
+   - I left joined all data (variance per procedure) or (rank of individual quality hospital) to a table of provider_id
+     and then smased survey responses depending on analysis question (hospital quality or procedure variance)
+   - then i filtered out all null values, in any column. If any null in column, 
+   - then ran corr() function in sql fro two columns either hospital rank vs survey_response rank 
+     OR procedure variability vs survey_response rank
+     
+ 3. Results: 
+    -hospital rank vs survey_response
+    0.15549260093522227
+    
+    -Correlation for this question was around 0.15, meaning that as rank in survey goes up, the hospital rank goes 
+    up with correlation of 0.15. This is a broad answer because we are looking at every variable in both tables averaged
+    out, so even if the hospital is overall high response for survey, the procedure variability quality might make it renormailize
+    to non existant trend, which we see. This makes sense, because there are a lot of things happening at hospitals and
+    surveys are biased repsonses, so looking at a quality vs survey response has heavy bias in it. I would expect it to be around zero,
+    because variability is high in some procedure, which can then lead to huge differences in rank in individual columns 
+    which bring own the overall rank score average. 
+    
+    -procedure variability vs survey_response rank
+    0.2628239040317933
+
+    - Correlation is slightly higher for variability, which makes more sense. More variability average in a hospital, the higher
+    the rank (which is not a good thing, remember low rank is good). So the higher the variability (meaning more range in
+    good and bad scores) the higher the rank for survey responses. But agin, like the above response, there is too much to consider
+    in these correlations. One bad variation score could ruin the average. 
+    
+    These data points show low correlation for both instances. This makes sense because there is just too much going on in hospitals.
+    Especially because I filtered to only hospitals that offer all procedure (or at least been scored in all procedures),
+    there is just too many inputs. Might need to consider poverty or population information, like question 2 conclusion,
+    in order to get a better picture.
+    
+    
