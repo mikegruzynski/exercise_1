@@ -1,4 +1,4 @@
--- need to have run filtering_dataframes.sql before continue. This code investigates hospitals quality overall
+-- need to have run filtering_dataframes.sql before continue. This code investigates correlations
 -- Input: tables from filtering_dataframes.sql
 -- Output: correlation of hospital quality avg rank vs survey avg rank AND hospital variability vs survey avg rank
 --
