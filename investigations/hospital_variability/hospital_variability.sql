@@ -1,6 +1,15 @@
---
---
---
+-- grab all of the filtered data from best_hospital_ranks (information in transformation.sql comments.
+-- Only will consider hospitals with all 9 conditions in the table, and group by state and average each state.
+-- each column shows the variance of the procedure.
+-- Column 1: Emergency Department
+-- Column 2: Heart Attack or Chest Pain
+-- Column 3: Heart Failure
+-- Column 4: Preventive Care
+-- Column 5: Surgical Care Improvement Project
+-- Column 6: Pregnancy and Delivery Care
+-- Column 7: Pnuemonia
+-- Column 8: Stroke Care
+-- Column 9: Blood Clot
 SELECT round(avg(bh_eff_ed_avg*bh_eff_ed_avg) -  AVG(bh_eff_ed_avg)*AVG(bh_eff_ed_avg), 2) as var_ed,
 round(avg(bh_eff_hacp_avg*bh_eff_hacp_avg) -  AVG(bh_eff_hacp_avg)*AVG(bh_eff_hacp_avg), 2) as var_hacp,
 round(avg(bh_eff_hf_avg*bh_eff_hf_avg) -  AVG(bh_eff_hf_avg)*AVG(bh_eff_hf_avg), 2) as var_hf,
