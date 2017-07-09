@@ -1,3 +1,6 @@
+-- Smash together each of the 9 categories from effective care ranks with each rank from the average of survey responses of 9 
+-- categories. I choose to do this in order to get both set of variables (avg rank of eff table and avg rank of survey into
+-- same units for correlation investigation)
 drop table patient_hosp_corr;
 create table patient_hosp_corr as
 select a.provider_id, a.hospital_name,
@@ -52,16 +55,17 @@ and cleanq_avg_rank is NOT NULL
 and disch_avg_rank is NOT NULL
 and overall_avg_rank is NOT NULL
 and HCAHPS_total_avg_rank is NOT NULL;
---
+-- Create final average for effective table and survey response table
 drop table patient_hosp_corr_rank;
 create table patient_hosp_corr_rank as
 select provider_id, hospital_name,
 (bh_eff_avg_ed_rank +  bh_eff_avg_hacp_rank +  bh_eff_avg_hf_rank +  bh_eff_avg_pc_rank +  bh_eff_avg_scip_rank +  bh_eff_avg_pdc_rank +  bh_eff_avg_p_rank +  bh_eff_avg_sc_rank +  bh_eff_avg_bcptca_rank)/9 as effective_rank_avg,
 (nur_avg_rank +  doc_avg_rank +  Responsiveness_Staff_avg_rank +  pain_avg_rank +  Medicines_avg_rank +  cleanq_avg_rank +  disch_avg_rank +  overall_avg_rank +  HCAHPS_total_avg_rank)/9 as survey_rank_avg
 FROM patient_hosp_corr;
---
+-- Write out the correltion of above table
 select corr(effective_rank_avg, survey_rank_avg) FROM patient_hosp_corr_rank;
-
+-- Smash together each of the 9 categories from effective care ranks with each variance from the average of survey responses of 9 
+-- categories.
 drop table master_hospital_vars;
 create table master_hospital_vars as
 select a.provider_id, a.hospital_name, a.state, 
@@ -138,14 +142,12 @@ and cleanq_avg_rank is NOT NULL
 and disch_avg_rank is NOT NULL
 and overall_avg_rank is NOT NULL
 and HCAHPS_total_avg_rank is NOT NULL;
----
----
----
+-- Create final average for variance of procedures from effective table table and survey rank response table
 drop table var_corr_rank;
 create table var_corr_rank as
 select provider_id, hospital_name,
 (bh_eff_ed_var +  bh_eff_hacp_var +  bh_eff_hf_var +  bh_eff_pc_var +  bh_eff_scip_var +  bh_eff_pdc_var +  bh_eff_p_var +  bh_eff_sc_var +  bh_eff_bcptca_var)/9 as effective_var_avg,
 (nur_avg_rank +  doc_avg_rank +  Responsiveness_Staff_avg_rank +  pain_avg_rank +  Medicines_avg_rank +  cleanq_avg_rank +  disch_avg_rank +  overall_avg_rank +  HCAHPS_total_avg_rank)/9 as survey_rank_avg
 FROM master_hospital_vars;
----
+--- Correlation value between variance and survey response rank average.
 select corr(effective_var_avg, survey_rank_avg) FROM var_corr_rank;
