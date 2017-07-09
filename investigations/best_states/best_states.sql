@@ -1,4 +1,4 @@
--- need to have run filtering_dataframes.sql before continue. This code investigates hospitals quality overall
+-- need to have run filtering_dataframes.sql before continue. This code investigates hospitals by state
 -- Input: tables from filtering_dataframes.sql
 -- Output: list of best overall state by overall score average
 --
