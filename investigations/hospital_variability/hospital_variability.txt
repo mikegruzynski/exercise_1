@@ -18,4 +18,19 @@ Question3: What Procedure have the greatest variability between hospitals?
     - c) wrote my own variance function : Cariance =  E[x^2] - E[x]^2 and each column is associated with each procedure
         
 3. Results
+- Column 1: Emergency Department
+- Column 2: Heart Attack or Chest Pain
+- Column 3: Heart Failure
+- Column 4: Preventive Care
+- Column 5: Surgical Care Improvement Project
+- Column 6: Pregnancy and Delivery Care
+- Column 7: Pnuemonia
+- Column 8: Stroke Care
+- Column 9: Blood Clot
 1966.83 563.88  39.63   179.82  6.28    40.32   35.57   13.51   200.79
+
+   - looking at the above information, it looks like the column 1 has the highest variability by far. Column 1 is associated with
+     Emergency Department. This variable makes sense for variability of score, do to the fact that anything can come through the 
+     ER and the doctors might not be specialized enough to solve the problem perfectly, but they need to do it regardless. Also
+     factor in the intensity and the amount of unscheduled work involved and it makes sense that column 1 (Emergency Department)
+     is the procedure with the highest variability.
