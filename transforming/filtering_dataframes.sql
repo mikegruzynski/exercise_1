@@ -43,8 +43,6 @@ FROM df_readmissions
 WHERE denominator not like '%Not Available%'
 AND score not like '%Not Available%'
 AND denominator > 30;
-
-
 -- Filtered out df_survey_responses to create filtered_df_survey_responses
 -- Made the survey values a denominator of the aggregate in each category
 -- For example nurse category had three subjects:Nurses_ach, Nurses_imp, Nurses_dim. Then added each numerator, which was the first int
@@ -70,64 +68,72 @@ state,
 (SUBSTRING(Overall_ach, 1, 2) + SUBSTRING(Overall_imp, 1, 2) + SUBSTRING(Overall_dim, 1, 2))/29 AS overall_avg,
 (HCAHPS_Base + HCAHPS_Consistency)/100 as HCAHPS_total_avg
 FROM df_survey_responses;
-
--- TRANSFORMING for best hospitals
+-- TRANSFORMING data for best hospitals and states questions
+-- The first section is filtering the effective_care dataframe by condition type, there are 9 condition types:
+-- Emergency Department, Heart Attack or Chest Pain, Heart Failure, Preventive Care, Surgical Care Improvement Project
+-- Pregnancy and Delivery Care, Pneumonia, Stroke Care, Blood Clot Prevention.
+-- The following 9 sections of sql code blocks will loop through and create a dataframe for each condtion type and average
+-- each score based on average score. How I calculated average score was to multiple sample by score and divide out by sample.
+-- ASSUMPTION: Sample is the number of samples of this score. Documentation is weak for explanation for column values,
+-- however, will continue analysis with this averaging logic in order to get a better expectaion of the sample average,
+-- rather than just averaging the the score values without the associated sample weights.
+-- Create average table of scores for Emergency Department grouped by provider_id
 DROP TABLE bh_eff_ed_avg;
 CREATE TABLE bh_eff_ed_avg AS
 SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_ed_avg FROM filtered_df_effective_care 
 WHERE condition = 'Emergency Department'
 GROUP BY provider_id
 ORDER BY bh_eff_ed_avg DESC;
--- 
+-- Create average table of scores for Heart Attack or Chest Pain grouped by provider_id
 DROP TABLE bh_eff_hacp_avg;
 CREATE TABLE bh_eff_hacp_avg AS
 SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_hacp_avg FROM filtered_df_effective_care 
 WHERE condition = 'Heart Attack or Chest Pain'
 GROUP BY provider_id
 ORDER BY bh_eff_hacp_avg DESC;
--- 
+-- Create average table of scores for Heart Failure grouped by provider_id
 DROP TABLE bh_eff_hf_avg;
 CREATE TABLE bh_eff_hf_avg AS
 SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_hf_avg FROM filtered_df_effective_care 
 WHERE condition = 'Heart Failure'
 GROUP BY provider_id
 ORDER BY bh_eff_hf_avg DESC;
--- 
+-- Create average table of scores for Preventive Care grouped by provider_id
 DROP TABLE bh_eff_pc_avg;
 CREATE TABLE bh_eff_pc_avg AS
 SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_pc_avg FROM filtered_df_effective_care 
 WHERE condition = 'Preventive Care'
 GROUP BY provider_id
 ORDER BY bh_eff_pc_avg DESC;
--- 
+-- Create average table of scores for Surgical Care Improvement Project grouped by provider_id
 DROP TABLE bh_eff_scip_avg;
 CREATE TABLE bh_eff_scip_avg AS
 SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_scip_avg FROM filtered_df_effective_care 
 WHERE condition = 'Surgical Care Improvement Project'
 GROUP BY provider_id
 ORDER BY bh_eff_scip_avg DESC;
--- 
+-- Create average table of scores for Pregnancy and Delivery Care grouped by provider_id
 DROP TABLE bh_eff_pdc_avg;
 CREATE TABLE bh_eff_pdc_avg AS
 SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_pdc_avg FROM filtered_df_effective_care 
 WHERE condition = 'Pregnancy and Delivery Care'
 GROUP BY provider_id
 ORDER BY bh_eff_pdc_avg DESC;
--- 
+-- Create average table of scores for Pneumonia grouped by provider_id
 DROP TABLE bh_eff_p_avg;
 CREATE TABLE bh_eff_p_avg AS
 SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_p_avg FROM filtered_df_effective_care 
 WHERE condition = 'Pneumonia'
 GROUP BY provider_id
 ORDER BY bh_eff_p_avg DESC;
--- 
+-- Create average table of scores for Stroke Care grouped by provider_id
 DROP TABLE bh_eff_sc_avg;
 CREATE TABLE bh_eff_sc_avg AS
 SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_sc_avg FROM filtered_df_effective_care 
 WHERE condition = 'Stroke Care'
 GROUP BY provider_id
 ORDER BY bh_eff_sc_avg DESC;
--- 
+-- Create average table of scores for Blood Clot Prevention grouped by provider_id
 DROP TABLE bh_eff_bcptca_avg;
 CREATE TABLE bh_eff_bcptca_avg AS
 SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_bcptca_avg FROM filtered_df_effective_care 
