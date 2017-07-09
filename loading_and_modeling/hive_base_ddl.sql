@@ -3,6 +3,11 @@
 -- 2. /user/w205/hospital_compare/hospitals/ ; with one csv file with General hospital Data
 -- 3. /user/w205/hospital_compare/measures/ ; with one csv file with Mapping measures to codes Data
 -- 4. /user/w205/hospital_compare/readmissions/ ; with one csv file with Procedure Data
+--
+-- This code creates a hive table with specific schema relevant to each table. 
+-- Input - csv files of data
+-- Output - sql tables of data
+--
 -- Writing a table for the effective_care.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_effective_care;
 CREATE EXTERNAL TABLE df_effective_care
