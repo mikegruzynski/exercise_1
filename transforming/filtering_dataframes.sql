@@ -1,9 +1,9 @@
--- Filtered out df_effective_care to create filtered_df_effective_care. Only need these variables to potentially solve the 
--- questions associated with this execise and also with sample sizes less than 30, becasue n>30 -> 
+-- Filtered out df_effective_care to create filtered_df_effective_care. Only need these variables to potentially solve the
+-- questions associated with this execise and also with sample sizes less than 30, becasue n>30 ->
 -- can use central limit theorem and rely on asymptotic assumptions.
 DROP TABLE filtered_df_effective_care;
 CREATE TABLE filtered_df_effective_care AS
-SELECT 
+SELECT
 provider_id,
 hospital_name,
 state,
@@ -14,22 +14,22 @@ measure_id
 FROM df_effective_care
 WHERE score not like '%Not Available%'
 AND score not like '%High%'
-AND score not like '%Medium%' 
+AND score not like '%Medium%'
 AND score not like '%Low%'
 and sample not like '%Not Available%'
 AND sample > 30;
--- Filtered out df_hospitals to create filtered_df_hospitals Only need these variables to potentially solve the questions 
+-- Filtered out df_hospitals to create filtered_df_hospitals Only need these variables to potentially solve the questions
 -- associated with this execise.
 DROP TABLE filtered_df_hospitals;
 CREATE TABLE filtered_df_hospitals AS
 SELECT
-provider_id, 
-hospital_name, 
+provider_id,
+hospital_name,
 state
 FROM df_hospitals;
--- DID NOT NEED to filter df_measure, no valuable information pertaining to the exercise 
+-- DID NOT NEED to filter df_measure, no valuable information pertaining to the exercise
 -- Only need these variables to potentially solve the questions associated with this execise.
--- Filtered out df_readmissions to create filtered_df_readmissions and also with sample sizes less than 30, becasue n>30 -> 
+-- Filtered out df_readmissions to create filtered_df_readmissions and also with sample sizes less than 30, becasue n>30 ->
 -- can use central limit theorem and rely on asymptotic assumptions
 DROP TABLE filtered_df_readmissions;
 CREATE TABLE filtered_df_readmissions AS
@@ -49,16 +49,16 @@ AND denominator > 30;
 -- Made the survey values a denominator of the aggregate in each category
 -- For example nurse category had three subjects:Nurses_ach, Nurses_imp, Nurses_dim. Then added each numerator, which was the first int
 -- of the column value and divided by 29 because Nurses_ach was out of 10, Nurses_imp was out of 9, and Nurses_dim was out of 10.
--- Repeated for the rest of the columns except for the HCAPS columns. 
+-- Repeated for the rest of the columns except for the HCAPS columns.
 -- Looked online source:http://www.hcahpsonline.org/files/HCAHPS%20Fact%20Sheet%20May%202012.pdf
 -- and found out that the base was out of 80 and the consistency was out of 20, so made an sum of numerator of both and divided by 100.
 -- This will make for an easier to figure out exercise questions associated.
 -- Only need these variables to potentially solve the questions associated with this execise.
 DROP TABLE filtered_df_survey_responses;
 CREATE TABLE filtered_df_survey_responses AS
-SELECT 
+SELECT
 provider_id,
-hospital_name, 
+hospital_name,
 state,
 (SUBSTRING(Nurses_ach, 1, 2) + SUBSTRING(Nurses_imp, 1, 2) + SUBSTRING(Nurses_dim, 1, 2))/29 AS nur_avg,
 (SUBSTRING(Doctors_ach, 1, 2) + SUBSTRING(Doctors_imp, 1, 2) + SUBSTRING(Doctors_dim, 1, 2))/29 AS doc_avg,
@@ -82,63 +82,63 @@ FROM df_survey_responses;
 -- Create average table of scores for Emergency Department grouped by provider_id
 DROP TABLE bh_eff_ed_avg;
 CREATE TABLE bh_eff_ed_avg AS
-SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_ed_avg FROM filtered_df_effective_care 
+SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_ed_avg FROM filtered_df_effective_care
 WHERE condition = 'Emergency Department'
 GROUP BY provider_id
 ORDER BY bh_eff_ed_avg DESC;
 -- Create average table of scores for Heart Attack or Chest Pain grouped by provider_id
 DROP TABLE bh_eff_hacp_avg;
 CREATE TABLE bh_eff_hacp_avg AS
-SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_hacp_avg FROM filtered_df_effective_care 
+SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_hacp_avg FROM filtered_df_effective_care
 WHERE condition = 'Heart Attack or Chest Pain'
 GROUP BY provider_id
 ORDER BY bh_eff_hacp_avg DESC;
 -- Create average table of scores for Heart Failure grouped by provider_id
 DROP TABLE bh_eff_hf_avg;
 CREATE TABLE bh_eff_hf_avg AS
-SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_hf_avg FROM filtered_df_effective_care 
+SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_hf_avg FROM filtered_df_effective_care
 WHERE condition = 'Heart Failure'
 GROUP BY provider_id
 ORDER BY bh_eff_hf_avg DESC;
 -- Create average table of scores for Preventive Care grouped by provider_id
 DROP TABLE bh_eff_pc_avg;
 CREATE TABLE bh_eff_pc_avg AS
-SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_pc_avg FROM filtered_df_effective_care 
+SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_pc_avg FROM filtered_df_effective_care
 WHERE condition = 'Preventive Care'
 GROUP BY provider_id
 ORDER BY bh_eff_pc_avg DESC;
 -- Create average table of scores for Surgical Care Improvement Project grouped by provider_id
 DROP TABLE bh_eff_scip_avg;
 CREATE TABLE bh_eff_scip_avg AS
-SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_scip_avg FROM filtered_df_effective_care 
+SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_scip_avg FROM filtered_df_effective_care
 WHERE condition = 'Surgical Care Improvement Project'
 GROUP BY provider_id
 ORDER BY bh_eff_scip_avg DESC;
 -- Create average table of scores for Pregnancy and Delivery Care grouped by provider_id
 DROP TABLE bh_eff_pdc_avg;
 CREATE TABLE bh_eff_pdc_avg AS
-SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_pdc_avg FROM filtered_df_effective_care 
+SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_pdc_avg FROM filtered_df_effective_care
 WHERE condition = 'Pregnancy and Delivery Care'
 GROUP BY provider_id
 ORDER BY bh_eff_pdc_avg DESC;
 -- Create average table of scores for Pneumonia grouped by provider_id
 DROP TABLE bh_eff_p_avg;
 CREATE TABLE bh_eff_p_avg AS
-SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_p_avg FROM filtered_df_effective_care 
+SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_p_avg FROM filtered_df_effective_care
 WHERE condition = 'Pneumonia'
 GROUP BY provider_id
 ORDER BY bh_eff_p_avg DESC;
 -- Create average table of scores for Stroke Care grouped by provider_id
 DROP TABLE bh_eff_sc_avg;
 CREATE TABLE bh_eff_sc_avg AS
-SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_sc_avg FROM filtered_df_effective_care 
+SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_sc_avg FROM filtered_df_effective_care
 WHERE condition = 'Stroke Care'
 GROUP BY provider_id
 ORDER BY bh_eff_sc_avg DESC;
 -- Create average table of scores for Blood Clot Prevention grouped by provider_id
 DROP TABLE bh_eff_bcptca_avg;
 CREATE TABLE bh_eff_bcptca_avg AS
-SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_bcptca_avg FROM filtered_df_effective_care 
+SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_bcptca_avg FROM filtered_df_effective_care
 WHERE condition like '%Blood Clot Prevention%'
 GROUP BY provider_id
 ORDER BY bh_eff_bcptca_avg DESC;
@@ -201,7 +201,7 @@ FROM bh_eff_bcptca_avg df;
 -- for analysis
 drop table best_hospital_ranks;
 create table best_hospital_ranks as
-select a.provider_id, a.hospital_name, a.state, 
+select a.provider_id, a.hospital_name, a.state,
 round(b.bh_eff_ed_avg, 2) as bh_eff_ed_avg, b.bh_eff_avg_ed_rank,
 round(c.bh_eff_hacp_avg, 2) as bh_eff_hacp_avg, c.bh_eff_avg_hacp_rank,
 round(d.bh_eff_hf_avg, 2) as bh_eff_hf_avg, d.bh_eff_avg_hf_rank,
@@ -257,9 +257,9 @@ and bh_eff_sc_avg is NOT NULL
 and bh_eff_avg_sc_rank is NOT NULL
 and bh_eff_bcptca_avg is NOT NULL
 and bh_eff_avg_bcptca_rank is NOT NULL;
--- NOTE I DID NOT USE READMIN DATA, the reason behind this was I wanted to smear away outliers or local events, in order to 
--- just focus on the over all best hospitals, states, and variability. Readmin data could have a lot of bias roped into 
--- the data from really sick people, extreme cases, or bad first tries. This study is for an overall best and not for 
+-- NOTE I DID NOT USE READMIN DATA, the reason behind this was I wanted to smear away outliers or local events, in order to
+-- just focus on the over all best hospitals, states, and variability. Readmin data could have a lot of bias roped into
+-- the data from really sick people, extreme cases, or bad first tries. This study is for an overall best and not for
 -- a study on data with biasness intrinsically in the data.
 --- TRANSFORMING for hospitals_and_patients
 -- Very similar to above data, only now doing rank over 9 categories from the survey data. The nine categories are on:
@@ -281,6 +281,12 @@ DROP TABLE sur_Responsiveness_Staff_avg_rank;
 CREATE TABLE sur_Responsiveness_Staff_avg_rank AS
 SELECT RANK() OVER(ORDER BY df.Responsiveness_Staff_avg DESC) as Responsiveness_Staff_avg_rank,
        df.provider_id, df.Responsiveness_Staff_avg
+FROM filtered_df_survey_responses df;
+-- Create table with rank column attached to the average score and provider_id for pain survey questions
+DROP TABLE sur_pain_avg_rank;
+CREATE TABLE sur_pain_avg_rank AS
+SELECT RANK() OVER(ORDER BY df.pain_avg DESC) as pain_avg_rank,
+       df.provider_id, df.pain_avg
 FROM filtered_df_survey_responses df;
 -- Create table with rank column attached to the average score and provider_id for pain survey questions
 DROP TABLE sur_pain_avg_rank;
@@ -323,8 +329,8 @@ FROM filtered_df_survey_responses df;
 drop table patient_hosp_corr;
 create table patient_hosp_corr as
 select a.provider_id, a.hospital_name,
-b.bh_eff_avg_ed_rank, b.bh_eff_avg_hacp_rank, 
-b.bh_eff_avg_hf_rank, b.bh_eff_avg_pc_rank, b.bh_eff_avg_scip_rank, b.bh_eff_avg_pdc_rank, 
+b.bh_eff_avg_ed_rank, b.bh_eff_avg_hacp_rank,
+b.bh_eff_avg_hf_rank, b.bh_eff_avg_pc_rank, b.bh_eff_avg_scip_rank, b.bh_eff_avg_pdc_rank,
 b.bh_eff_avg_p_rank, b.bh_eff_avg_sc_rank, b.bh_eff_avg_bcptca_rank,
 c.nur_avg_rank,
 d.doc_avg_rank,
@@ -379,62 +385,62 @@ and HCAHPS_total_avg_rank is NOT NULL;
 -- Create table with variance values column attached to the average score and provider_id for Emergency Department condition
 DROP TABLE bh_eff_ed_var;
 CREATE TABLE bh_eff_ed_var AS
-SELECT provider_id, variance(score) AS bh_eff_ed_var FROM filtered_df_effective_care 
+SELECT provider_id, variance(score) AS bh_eff_ed_var FROM filtered_df_effective_care
 WHERE condition = 'Emergency Department'
 GROUP BY provider_id
 ORDER BY bh_eff_ed_var DESC;
 -- Create table with variance values column attached to the average score and provider_id for Heart Attack or Chest Pain condition
 CREATE TABLE bh_eff_hacp_var AS
-SELECT provider_id, variance(score) AS bh_eff_hacp_var FROM filtered_df_effective_care 
+SELECT provider_id, variance(score) AS bh_eff_hacp_var FROM filtered_df_effective_care
 WHERE condition = 'Heart Attack or Chest Pain'
 GROUP BY provider_id
 ORDER BY bh_eff_hacp_var DESC;
 -- Create table with variance values column attached to the average score and provider_id for Heart Failure condition
 DROP TABLE bh_eff_hf_var;
 CREATE TABLE bh_eff_hf_var AS
-SELECT provider_id, variance(score) AS bh_eff_hf_var FROM filtered_df_effective_care 
+SELECT provider_id, variance(score) AS bh_eff_hf_var FROM filtered_df_effective_care
 WHERE condition = 'Heart Failure'
 GROUP BY provider_id
 ORDER BY bh_eff_hf_var DESC;
 -- Create table with variance values column attached to the average score and provider_id for Preventive Care condition
 DROP TABLE bh_eff_pc_var;
 CREATE TABLE bh_eff_pc_var AS
-SELECT provider_id, variance(score) AS bh_eff_pc_var FROM filtered_df_effective_care 
+SELECT provider_id, variance(score) AS bh_eff_pc_var FROM filtered_df_effective_care
 WHERE condition = 'Preventive Care'
 GROUP BY provider_id
 ORDER BY bh_eff_pc_var DESC;
 -- Create table with variance values column attached to the average score and provider_id for Surgical Care Improvement Project condition
 DROP TABLE bh_eff_scip_var;
 CREATE TABLE bh_eff_scip_var AS
-SELECT provider_id, variance(score) AS bh_eff_scip_var FROM filtered_df_effective_care 
+SELECT provider_id, variance(score) AS bh_eff_scip_var FROM filtered_df_effective_care
 WHERE condition = 'Surgical Care Improvement Project'
 GROUP BY provider_id
 ORDER BY bh_eff_scip_var DESC;
 -- Create table with variance values column attached to the average score and provider_id for Pregnancy and Delivery Care condition
 DROP TABLE bh_eff_pdc_var;
 CREATE TABLE bh_eff_pdc_var AS
-SELECT provider_id, variance(score) AS bh_eff_pdc_var FROM filtered_df_effective_care 
+SELECT provider_id, variance(score) AS bh_eff_pdc_var FROM filtered_df_effective_care
 WHERE condition = 'Pregnancy and Delivery Care'
 GROUP BY provider_id
 ORDER BY bh_eff_pdc_var DESC;
 -- Create table with variance values column attached to the average score and provider_id for Pneumonia Care condition
 DROP TABLE bh_eff_p_var;
 CREATE TABLE bh_eff_p_var AS
-SELECT provider_id, variance(score) AS bh_eff_p_var FROM filtered_df_effective_care 
+SELECT provider_id, variance(score) AS bh_eff_p_var FROM filtered_df_effective_care
 WHERE condition = 'Pneumonia'
 GROUP BY provider_id
 ORDER BY bh_eff_p_var DESC;
 -- Create table with variance values column attached to the average score and provider_id for Stroke Care condition
 DROP TABLE bh_eff_sc_var;
 CREATE TABLE bh_eff_sc_var AS
-SELECT provider_id, variance(score) AS bh_eff_sc_var FROM filtered_df_effective_care 
+SELECT provider_id, variance(score) AS bh_eff_sc_var FROM filtered_df_effective_care
 WHERE condition = 'Stroke Care'
 GROUP BY provider_id
 ORDER BY bh_eff_sc_var DESC;
 -- Create table with variance values column attached to the average score and provider_id for Blood Clot Prevention condition
 DROP TABLE bh_eff_bcptca_var;
 CREATE TABLE bh_eff_bcptca_var AS
-SELECT provider_id, variance(score) AS bh_eff_bcptca_var FROM filtered_df_effective_care 
+SELECT provider_id, variance(score) AS bh_eff_bcptca_var FROM filtered_df_effective_care
 WHERE condition like '%Blood Clot Prevention%'
 GROUP BY provider_id
 ORDER BY bh_eff_bcptca_var DESC;
@@ -442,7 +448,7 @@ ORDER BY bh_eff_bcptca_var DESC;
 -- same logic as above, looking at best overall hospital and needs to have all data in order to be considered
 drop table master_hospital_vars;
 create table master_hospital_vars as
-select a.provider_id, a.hospital_name, a.state, 
+select a.provider_id, a.hospital_name, a.state,
 b.bh_eff_ed_var,
 c.bh_eff_hacp_var,
 d.bh_eff_hf_var,
