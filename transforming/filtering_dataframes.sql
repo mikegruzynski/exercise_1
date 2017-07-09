@@ -322,7 +322,7 @@ FROM filtered_df_survey_responses df;
 -- same logic as above, looking at best overall hospital and needs to have all data in order to be considered
 drop table patient_hosp_corr;
 create table patient_hosp_corr as
-select a.provider_id, a.hospital_name
+select a.provider_id, a.hospital_name,
 b.bh_eff_avg_ed_rank, b.bh_eff_avg_hacp_rank, 
 b.bh_eff_avg_hf_rank, b.bh_eff_avg_pc_rank, b.bh_eff_avg_scip_rank, b.bh_eff_avg_pdc_rank, 
 b.bh_eff_avg_p_rank, b.bh_eff_avg_sc_rank, b.bh_eff_avg_bcptca_rank,
