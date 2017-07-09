@@ -1,3 +1,7 @@
+-- This code takes original sql tables and converts them into desired dataframes for analysis
+-- Input - sql data fram and schema
+-- Output - sql tables of data
+--
 -- Filtered out df_effective_care to create filtered_df_effective_care. Only need these variables to potentially solve the
 -- questions associated with this execise and also with sample sizes less than 30, becasue n>30 ->
 -- can use central limit theorem and rely on asymptotic assumptions.
