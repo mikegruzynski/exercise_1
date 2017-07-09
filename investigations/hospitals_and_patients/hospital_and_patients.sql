@@ -1,3 +1,7 @@
+-- need to have run filtering_dataframes.sql before continue. This code investigates hospitals quality overall
+-- Input: tables from filtering_dataframes.sql
+-- Output: correlation of hospital quality avg rank vs survey avg rank AND hospital variability vs survey avg rank
+--
 -- Smash together each of the 9 categories from effective care ranks with each rank from the average of survey responses of 9 
 -- categories. I choose to do this in order to get both set of variables (avg rank of eff table and avg rank of survey into
 -- same units for correlation investigation)
