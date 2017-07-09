@@ -11,6 +11,4 @@ round(avg(bh_eff_p_avg*bh_eff_p_avg) -  AVG(bh_eff_p_avg)*AVG(bh_eff_p_avg), 2) 
 round(avg(bh_eff_sc_avg*bh_eff_sc_avg) -  AVG(bh_eff_sc_avg)*AVG(bh_eff_sc_avg), 2) as var_sc,
 round(avg(bh_eff_bcptca_avg*bh_eff_bcptca_avg) -  AVG(bh_eff_bcptca_avg)*AVG(bh_eff_bcptca_avg), 2) as var_bcptca
 FROM best_hospital_ranks;
-SELECT 'var_ed' AS var_ed, 'var_hacp' AS var_hacp, 'var_hf' AS var_hf, 'var_pc' AS var_pc,
-'var_scip' AS var_scip, 'var_pdc' AS var_pdc, 'var_p' AS var_p, 'var_sc' AS var_sc, 
-'var_bcptca' AS var_bcptca;
+
