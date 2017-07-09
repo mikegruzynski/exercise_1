@@ -1,3 +1,7 @@
+-- need to have run filtering_dataframes.sql before continue. This code investigates hospitals quality overall
+-- Input: tables from filtering_dataframes.sql
+-- Output: list of best overall state by overall score average
+--
 -- grab all of the filtered data from best_hospital_ranks (information in transformation.sql comments.
 -- Only will consider hospitals with all 9 conditions in the table, and group by state and average each state.
 -- Lower rank is better, and display in order from smallest to largest.
