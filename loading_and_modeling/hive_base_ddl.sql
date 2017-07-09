@@ -1,8 +1,8 @@
 -- NOTE, NEED TO HAVE DATA STORED IN:
--- 1. /user/w205/hospital_compare/effective_care/ ; with csv file with Procedure Data
--- 2. /user/w205/hospital_compare/hospitals/ ; with csv file with General hospital Data
--- 3. /user/w205/hospital_compare/measures/ ; with csv file with Mapping measures to codes Data
--- 4. /user/w205/hospital_compare/readmissions/ ; with csv file with Procedure Data
+-- 1. /user/w205/hospital_compare/effective_care/ ; with one csv file with Procedure Data
+-- 2. /user/w205/hospital_compare/hospitals/ ; with one csv file with General hospital Data
+-- 3. /user/w205/hospital_compare/measures/ ; with one csv file with Mapping measures to codes Data
+-- 4. /user/w205/hospital_compare/readmissions/ ; with one csv file with Procedure Data
 -- Writing a table for the effective_care.csv data. Looking at the csv file, below is the schema to created the unfiltered sql dataframes
 DROP TABLE df_effective_care;
 CREATE EXTERNAL TABLE df_effective_care
