@@ -1,1 +1,37 @@
-d
+Question1: What Hospitals are models of high quality care?
+1. Assumptions going into the investigation:
+    - Hospitals need to have data in all 9 categories of the efective table:
+      - Emergency Department, Heart Attack or Chest Pain, Heart Failure, Preventive Care, Surgical Care Improvement Project,
+        Pregnancy and Delivery Care, Pneumonia, Stroke Care, Blood Clot Prevention
+      - This is because we are looking at overall best quality care, I want to filter out hospitals that are specialized and
+        only have certain items of the 9 categories. Taking the average on those, might be skewed. Ex. If they only had two or
+        three items from the nine, the average might be artificial since they are specialized in those categories only.
+    - Only Data will be used from the effective_care.csv dataframes
+      - I did this in order to filter out snowball biasness from recurring patients. The patients might have not taken care of 
+        themselves in between the two instances of the hospital visits. Therefore only initial visits will be considered for
+        the data analysis
+        
+2. Process of analysis
+    - a) Create average scores and ranks of the average scores for each categories grouped by hospital provider_id (Primary key)
+    - b) Smash each individual column category into one table of average value and rank
+    - c) filter out NULL values from columns, if one column has a null value then filter out that hospital, as it does not 
+         qualify for best overall hospital (smears out heavily skewed data)
+    - d) run overall average of rank and list top 10
+    
+3. Results
+    - rank is better if lower, therefore we want the overall lowest overage for each hospital and output top 10 below:
+KAISER FOUNDATION HOSPITAL-SANTA CLARA  421.67
+KAISER FOUNDATION HOSPITAL - PANORAMA CITY      429.33
+KAISER FOUNDATION HOSPITAL - SOUTH BAY  463.33
+MENORAH MEDICAL CENTER  473.56
+AVERA SACRED HEART HOSPITAL     478.56
+COMMUNITY MEDICAL CENTER        493.56
+ST CLARES HOSPITAL OF WESTON    496.33
+NOVANT HEALTH ROWAN MEDICAL CENTER      533.11
+PORTSMOUTH REGIONAL HOSPITAL    540.22
+KAISER FOUNDATION HOSPITAL-MORENO VALLEY        545.0
+      
+      - looking at the data, looks like hospitals in the KAISER FOUNDATION HOSPITAL system is the best, with the Santa Clara one
+        at the top of the list. This is part of the Kaiser Permanente Group (https://en.wikipedia.org/wiki/Kaiser_Permanente)
+        which is a multi-state integrated managed care consortium, wth revenue in the multi-billion amount. It seems like this
+        system is well founded with good staff and technology and is a realistic answer for the question of best overall hospital
