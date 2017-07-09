@@ -11,7 +11,11 @@ Question3: What Procedure have the greatest variability between hospitals?
       - I did this in order to filter out snowball biasness from recurring patients. The patients might have not taken care of 
         themselves in between the two instances of the hospital visits. Therefore only initial visits will be considered for
         the data analysis
-        
+
+2. Process of analysis
+    - a) Create average scores and ranks of the average scores for each categories grouped by hospital provider_id (Primary key)
+    - b) Smash each individual column category into one table of average value and rank
+    - c) wrote my own variance function : Cariance =  E[x^2] - E[x]^2 and each column is associated with each procedure
         
 3. Results
 1966.83 563.88  39.63   179.82  6.28    40.32   35.57   13.51   200.79
