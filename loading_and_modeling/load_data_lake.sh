@@ -1,3 +1,7 @@
+# This code moves data around, starting from pc to hdfs storage area
+# Input - csv files of data and location of desired files
+# Output - csv files in specified area
+#
 # transfer the file from PC onto AWS EC2 instance
 scp -i "UCBW205.pem" /cygdrive/c/Users/mgruz/Desktop/exercise_1/data/*.csv  root@ec2-34-204-3-76.compute-1.amazonaws.com:/data/
 # change directory into where I put raw data
