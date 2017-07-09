@@ -1,3 +1,7 @@
+-- need to have run filtering_dataframes.sql before continue. This code investigates hospitals variability
+-- Input: tables from filtering_dataframes.sql
+-- Output: variability of each of the 9 conditions
+--
 -- grab all of the filtered data from best_hospital_ranks (information in transformation.sql comments.
 -- Only will consider hospitals with all 9 conditions in the table, and group by state and average each state.
 -- each column shows the variance of the procedure.
