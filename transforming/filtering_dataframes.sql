@@ -140,57 +140,56 @@ SELECT provider_id, sum(sample * score)/ sum(sample) AS bh_eff_bcptca_avg FROM f
 WHERE condition like '%Blood Clot Prevention%'
 GROUP BY provider_id
 ORDER BY bh_eff_bcptca_avg DESC;
--- 
---
---
+-- Now looping through all 9 tables created above and placing a rank column in for each of the above 9 categories
+-- Create table with rank column attached to the average score and provider_id for Emergency Department
 DROP TABLE bh_eff_ed_rank;
 CREATE TABLE bh_eff_ed_rank AS
 SELECT RANK() OVER(ORDER BY df.bh_eff_ed_avg DESC) as bh_eff_avg_ed_rank,
        df.provider_id,df.bh_eff_ed_avg
 FROM bh_eff_ed_avg df;
--- 
+-- Create table with rank column attached to the average score and provider_id for Heart Attack or Chest Pain
 DROP TABLE bh_eff_hacp_rank;
 CREATE TABLE bh_eff_hacp_rank AS
 SELECT RANK() OVER(ORDER BY df.bh_eff_hacp_avg DESC) as bh_eff_avg_hacp_rank,
        df.provider_id,df.bh_eff_hacp_avg
 FROM bh_eff_hacp_avg df;
--- 
+-- Create table with rank column attached to the average score and provider_id for Heart Failure
 DROP TABLE bh_eff_hf_rank;
 CREATE TABLE bh_eff_hf_rank AS
 SELECT RANK() OVER(ORDER BY df.bh_eff_hf_avg DESC) as bh_eff_avg_hf_rank,
        df.provider_id,df.bh_eff_hf_avg
 FROM bh_eff_hf_avg df;
--- 
+-- Create table with rank column attached to the average score and provider_id for Preventive Care
 DROP TABLE bh_eff_pc_rank;
 CREATE TABLE bh_eff_pc_rank AS
 SELECT RANK() OVER(ORDER BY df.bh_eff_pc_avg DESC) as bh_eff_avg_pc_rank,
        df.provider_id,df.bh_eff_pc_avg
 FROM bh_eff_pc_avg df;
--- 
+-- Create table with rank column attached to the average score and provider_id for Surgical Care Improvement Project
 DROP TABLE bh_eff_scip_rank;
 CREATE TABLE bh_eff_scip_rank AS
 SELECT RANK() OVER(ORDER BY df.bh_eff_scip_avg DESC) as bh_eff_avg_scip_rank,
        df.provider_id,df.bh_eff_scip_avg
 FROM bh_eff_scip_avg df;
--- 
+-- Create table with rank column attached to the average score and provider_id for Pregnancy and Delivery Care
 DROP TABLE bh_eff_pdc_rank;
 CREATE TABLE bh_eff_pdc_rank AS
 SELECT RANK() OVER(ORDER BY df.bh_eff_pdc_avg DESC) as bh_eff_avg_pdc_rank,
        df.provider_id,df.bh_eff_pdc_avg
 FROM bh_eff_pdc_avg df;
--- 
+-- Create table with rank column attached to the average score and provider_id for Pneumonia
 DROP TABLE bh_eff_p_rank;
 CREATE TABLE bh_eff_p_rank AS
 SELECT RANK() OVER(ORDER BY df.bh_eff_p_avg DESC) as bh_eff_avg_p_rank,
        df.provider_id,df.bh_eff_p_avg
 FROM bh_eff_p_avg df;
--- 
+-- Create table with rank column attached to the average score and provider_id for Stroke Care
 DROP TABLE bh_eff_sc_rank;
 CREATE TABLE bh_eff_sc_rank AS
 SELECT RANK() OVER(ORDER BY df.bh_eff_sc_avg DESC) as bh_eff_avg_sc_rank,
        df.provider_id,df.bh_eff_sc_avg
 FROM bh_eff_sc_avg df;
--- 
+-- Create table with rank column attached to the average score and provider_id for Blood Clot
 DROP TABLE bh_eff_bcptca_rank;
 CREATE TABLE bh_eff_bcptca_rank AS
 SELECT RANK() OVER(ORDER BY df.bh_eff_bcptca_avg DESC) as bh_eff_avg_bcptca_rank,
