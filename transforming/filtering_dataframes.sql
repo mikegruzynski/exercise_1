@@ -17,8 +17,6 @@ AND score not like '%Medium%'
 AND score not like '%Low%'
 and sample not like '%Not Available%'
 AND sample > 30;
-
-
 -- Filtered out df_hospitals to create filtered_df_hospitals Only need these variables to potentially solve the questions 
 -- associated with this execise.
 DROP TABLE filtered_df_hospitals;
@@ -28,10 +26,8 @@ provider_id,
 hospital_name, 
 state
 FROM df_hospitals;
-
 -- DID NOT NEED to filter df_measure, no valuable information pertaining to the exercise 
 -- Only need these variables to potentially solve the questions associated with this execise.
-
 -- Filtered out df_readmissions to create filtered_df_readmissions;
 DROP TABLE filtered_df_readmissions;
 CREATE TABLE filtered_df_readmissions AS
@@ -50,7 +46,12 @@ AND denominator > 30;
 
 
 -- Filtered out df_survey_responses to create filtered_df_survey_responses
--- Made the survey values a denominatorpercentage: Ex instead of 2 out of 10, now the value is 0.2
+-- Made the survey values a denominator of the aggregate in each category
+-- For example nurse category had three subjects:Nurses_ach, Nurses_imp, Nurses_dim. Then added each numerator, which was the first int
+-- of the column value and divided by 29 because Nurses_ach was out of 10, Nurses_imp was out of 9, and Nurses_dim was out of 10.
+-- Repeated for the rest of the columns except for the HCAPS columns. 
+-- Looked online source:http://www.hcahpsonline.org/files/HCAHPS%20Fact%20Sheet%20May%202012.pdf
+-- and found out that the base was out of 80 and the consistency was out of 20, so made an sum of numerator of both and divided by 100.
 -- This will make for an easier to figure out exercise questions associated.
 -- Only need these variables to potentially solve the questions associated with this execise.
 DROP TABLE filtered_df_survey_responses;
