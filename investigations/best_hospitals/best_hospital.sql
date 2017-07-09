@@ -1,3 +1,7 @@
+-- need to have run filtering_dataframes.sql before continue. This code investigates hospitals quality overall
+-- Input: tables from filtering_dataframes.sql
+-- Output: top 10 list of best overall hospital by overall score average
+--
 -- Grab the table called best_hospital_ranks_filtered ( explanation in transformation.sql and average the ranks
 -- in the filtered dataframe for an overall rank average. 1 is the best, so the lower the number, the better overall
 -- the hospital is and show top 10 from smallest to largest
