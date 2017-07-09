@@ -1,0 +1,88 @@
+Question2: What States are models of high quality care?
+1. Assumptions going into the investigation - Same as question 1, but will re-iterate the assumptions:
+    - Hospitals need to have data in all 9 categories of the efective table:
+      - Emergency Department, Heart Attack or Chest Pain, Heart Failure, Preventive Care, Surgical Care Improvement Project,
+        Pregnancy and Delivery Care, Pneumonia, Stroke Care, Blood Clot Prevention
+      - This is because we are looking at overall best quality care, I want to filter out hospitals that are specialized and
+        only have certain items of the 9 categories. Taking the average on those, might be skewed. Ex. If they only had two or
+        three items from the nine, the average might be artificial since they are specialized in those categories only.
+    - Only Data will be used from the effective_care.csv dataframes
+      - I did this in order to filter out snowball biasness from recurring patients. The patients might have not taken care of 
+        themselves in between the two instances of the hospital visits. Therefore only initial visits will be considered for
+        the data analysis
+        
+2. Process of analysis
+    - a) Create average scores and ranks of the average scores for each categories grouped by hospital provider_id (Primary key)
+    - b) Smash each individual column category into one table of average value and rank
+    - c) filter out NULL values from columns, if one column has a null value then filter out that hospital, as it does not 
+         qualify for best overall hospital (smears out heavily skewed data)
+    - d) run overall average of rank by grouping by state and averaging the average ranks of the nine categories
+    
+3. Results
+    - rank is better if lower, therefore we want the overall lowest overage for each hospital and output top 10 below:
+GU      NULL
+AS      NULL
+MP      NULL
+VI      NULL
+ME      1103.07
+NH      1160.12
+WI      1249.64
+CO      1253.5
+UT      1281.68
+MT      1286.46
+SD      1298.17
+MD      1303.7
+VA      1338.53
+NC      1356.72
+FL      1365.12
+HI      1382.77
+NE      1393.34
+DE      1408.14
+SC      1430.89
+TX      1446.29
+KS      1446.67
+IN      1458.12
+IL      1459.55
+NV      1460.0
+ID      1468.88
+CA      1471.26
+AK      1473.0
+MO      1477.7
+PA      1485.69
+OH      1494.81
+CT      1495.82
+IA      1515.63
+MA      1526.35
+NJ      1534.13
+AZ      1534.46
+MI      1547.68
+AR      1557.72
+VT      1574.55
+MN      1583.82
+KY      1593.73
+NY      1595.36
+RI      1612.88
+OR      1615.75
+TN      1617.59
+WA      1622.15
+WV      1622.24
+AL      1623.35
+NM      1629.58
+GA      1636.34
+OK      1636.8
+DC      1663.81
+LA      1703.35
+MS      1711.94
+WY      1718.16
+ND      1722.18
+PR      1786.95
+   - With the logic above, it looks like Maine (ME) is the best overall category for hospitals. I would take this information
+     as a data point and not an absolute. Lookin gat the output, it seems like a lot of the outputs are states with lower populations
+     and limited population densities. This makes sense, because with less population, you need less hospitals, which brings along with
+     with it less variability in quality of care. Less populations means less hospitals whih mean less amount of quality doctors and
+     less amount of overall procedures because of lack of population. Less procedures will lead to more rest and higher quality work.
+     
+     Therefore smaller states are yielding better overall rank (lower is better), and with the above discussion Maine (ME) is the 
+     best overall care followed by New Hampshire (NH) and Wisconsin (WI). This is a very vague question with a weak absolute answer.
+     Perhaps, normalizing it by the amount of population or even poverty level might smear out the biasness of population 
+     associated with this question and response.
