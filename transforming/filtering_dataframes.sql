@@ -394,6 +394,7 @@ WHERE condition = 'Emergency Department'
 GROUP BY provider_id
 ORDER BY bh_eff_ed_var DESC;
 -- Create table with variance values column attached to the average score and provider_id for Heart Attack or Chest Pain condition
+DROP TABLE bh_eff_hacp_var;
 CREATE TABLE bh_eff_hacp_var AS
 SELECT provider_id, variance(score) AS bh_eff_hacp_var FROM filtered_df_effective_care
 WHERE condition = 'Heart Attack or Chest Pain'
