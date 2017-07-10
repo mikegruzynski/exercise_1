@@ -11,4 +11,7 @@ All Code has comments for what it is and why it was done. All write ups are .txt
 with the results and comments. Most of the transforming logic is inside of the comments in the transormation folder sql file with
 vaguer discussion inside the write up analysis text files.
 
+** NOTE YOU MUST RUN filtering_dataframes.sql UNDER TRANSFORMING BEFORE ANYTHING IN INVESTIGATION 
 
+Thanks
+-Mike
